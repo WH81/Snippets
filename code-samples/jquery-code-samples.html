@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Bootstrap CSS CDN link -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- CSS custom stylesheet here --> 
+<style type="text/css"> 
+    #wrapper {margin: 2em;}
+    #success {background-color: lightgreen; color: white; width: 80%; padding:2em; border: 1px outset green; display: none;}
+    #failed {background-color: lightcoral; color: white; width: 80%; padding:2em; border: 1px outset red; display: none;}
+    table {background-color: tan; border: 2px inset green; width: 80%; height:300px;}
+    tr {width: 100%; height: 100px;}
+    td {background-color: yellow; width: 25%; height: 100px; padding: 2em;}
+    button {padding:1em 2em; background-color: lightcyan;}
+    button:hover {background-color: lightseagreen;}
+    form {width: 70%; height: auto;}
+    h2 {width: 70%; height: auto;}
+    .BlueDiv {background-color: blue;}
+    .RedDiv {background-color: red;}
+    #OutputDiv {color:white;}
+html, body {
+   height: 100%;
+   width: 100%;
+   margin: 0;
+   background: #0B3142;
+ }
+ 
+ main {
+   position: relative;
+   top: 30px;
+ }
+ 
+ .con,
+ .special-con {
+   cursor: pointer;
+   display: inline-block;
+ }
+ 
+ .bar {
+   display: block;
+   height: 5px;
+   width: 50px;
+   background: #6FFFE9;
+   margin: 10px auto;
+ }
+ 
+ .con {
+   width: auto;
+   margin: 0 auto;
+   -webkit-transition: all .7s ease;
+   -moz-transition: all .7s ease;
+   -ms-transition: all .7s ease;
+   -o-transition: all .7s ease;
+   transition: all .7s ease;
+ }
+ 
+ .col {
+   display: inline-block;
+   width: 24%;
+   text-align: center;
+   height: auto;
+   position: relative;
+ }
+ 
+ .middle {
+   margin: 0 auto;
+ }
+ 
+ .bar {
+   -webkit-transition: all .7s ease;
+   -moz-transition: all .7s ease;
+   -ms-transition: all .7s ease;
+   -o-transition: all .7s ease;
+   transition: all .7s ease;
+ }
+ 
+ .con:hover .top {
+   -webkit-transform: translateY(15px) rotateZ(45deg);
+   -moz-transform: translateY(15px) rotateZ(45deg);
+   -ms-transform: translateY(15px) rotateZ(45deg);
+   -o-transform: translateY(15px) rotateZ(45deg);
+   transform: translateY(15px) rotateZ(45deg);
+ }
+ 
+ .con:hover .bottom {
+   -webkit-transform: translateY(-15px) rotateZ(-45deg);
+   -moz-transform: translateY(-15px) rotateZ(-45deg);
+   -ms-transform: translateY(-15px) rotateZ(-45deg);
+   -o-transform: translateY(-15px) rotateZ(-45deg);
+   transform: translateY(-15px) rotateZ(-45deg);
+ }
+ 
+ .con:hover .middle {
+   width: 0;
+ } 
+</style>
+
+<!-- JQuery Bootstrap CDN link -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<!-- JQuery CDN link -->
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous">
+</script>
+
+<!-- JQuery custom code here --> 
+<script type="text/javascript">
+// window.onload = function(){
+//    alert('Window loaded');
+// };
+
+    $(document).ready(function(){
+
+      var html = '';
+      $('div.BlueDiv,div.RedDiv').each(function (index) {
+        html += "<br />" + index + " " + $(this).text();
+        });
+      var output = $('#OutputDiv');
+        output.html(html);
+
+
+        // $('#failed').each(function() {
+        //    alert($(this).html());
+        // });
+
+        // var coll = $('tr');
+        // alert(coll.length);
+
+        // $('button#send').click(function(){
+        //    alert($('button[title]').length);
+        // });
+
+        // var inputs = $('input[type="text"]');
+        // inputs.css('background-color','lightgrey');
+
+        $('td').css('color',"red").css('text-align',"center").css('border',"1px outset red");
+        $('td.featured').css('background-color',"lightblue").css('border',"1px outset grey");
+        $('td:first').css('color',"white").css('font-size',"2em");
+        $('td').css('font-size',"1.5em");   
+        $('td:last').css('background-color',"grey").css('border',"1px outset maroon").css('color',"white");
+        $('div#success').html('Thank you for your message, we will reply as soon as possible.').css('color',"green").css('font-weight',"bolder").css('text-shadow',"1px 1px 2px white");
+        $('div#failed').html('Sorry, your message has not be sent. Please correct your data and try again.').css('color',"red").css('font-weight',"bolder").css('text-shadow',"1px 1px 2px white");
+        $('.panel').css('border', 'black').css('margin-right', '2em');
+        
+        /* 
+        $(':input').each(function() {
+            var elem = $(this);
+            alert(elem.val());
+        });        
+        */
+
+        
+    });
+
+</script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>JQuery code examples</title>
+</head>
+
+<body id="wrapper">
+
+    
+<main>
+  <div class="col">
+    <div class="con">
+      <div class="bar top"></div>
+      <div class="bar middle"></div>
+      <div class="bar bottom"></div>
+    </div>
+  </div>
+</main>
+   
+    <div id="success"></div>
+    <div id="failed"></div>
+    <br />
+
+    <h2 class="panel">Contact us</h2> 
+    <form id="contact-form" class="form-horizontal" action="/action_page.php">
+        <div class="form-group">
+        <label class="control-label col-sm-2" for="name">Name:</label>
+        <div class="col-sm-10">          
+            <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
+        </div>
+        </div>
+
+        <div class="form-group">
+        <label class="control-label col-sm-2" for="email">Email:</label>
+        <div class="col-sm-10">
+            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+        </div>
+        </div>
+        
+        <div class="form-group">        
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+        </div>
+    </form>
+
+    <table>
+        <tr>
+            <td class="featured">one</td>
+            <td>two</td>
+            <td>three</td>
+            <td>four</td>
+        </tr>
+         <tr>
+            <td><label>Full Name</label></td>
+            <td><input id="full-name" type="text" value="John"></td>
+            <td><label>Sur Name</label></td>
+            <td><input id="sur-name" type="text"></td>
+        </tr>
+    </table>
+   <!-- <button id="send" value"send" title="Send message">Send</button> -->
+
+<div id="OutputDiv"></div>
+
+<div class="BlueDiv">
+  <span>Blue div</span>
+</div>
+
+<div class="RedDiv">
+  <span>Red div</span>
+</div>
+
+
+</body>
+</html>
