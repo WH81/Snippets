@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .hint {
+                color: red; 
+                font-size: 75%;
+            }
+            span.required {
+                 padding: 0 3px;          
+            }
+        </style>
+    </head>
+    <body>
+
+<br /><br />        
+        <form id="contactForm" name="contactUsForm" method="POST" enctype="application/x-www-form-urlencoded" action="#">
+    
+            <label for="name">Name<span class="required">*</span></label>
+            <input tabindex="1" type="text" name="fullName" id="name" placeholder="Your first and last name" required /> 
+            <span id="nameHint" class="hint"></span>        
+            
+<br /><br />
+
+            <label for="email">Email<span class="required">*</span></label>
+            <input tabindex="2" type="email" name="emailAddress" id="email" placeholder="Your email address" required />
+            <span id="emailHint" class="hint"></span>
+
+<br /><br />
+
+            <label for="phone">Phone<span class="required">*</span></label>
+            <input tabindex="3" type="tel" name="phoneNumber" id='phone' maxlength="14" placeholder="Your phone number" required />
+            <span id="phoneHint" class="hint"></span>
+
+<br /><br />
+
+            <label for="make">Make</label>
+            <input tabindex="4" type="text" name="vehicleMake" id="make" placeholder="Make of your vehicle" />
+
+<br /><br />
+
+            <label for="model">Model</label>
+            <input tabindex="5" type="text" name="vehicleModel" id="model" placeholder="Model of your vehicle" />
+
+<br /><br />
+
+            <label for="year">Year</label>
+            <input tabindex="6" type="text" name="vehicleYear" id="year" pattern="\d{4}" maxlength="4" onkeypress="return isNumberKey(event)" placeholder="Year of your vehicle"/>
+
+<br /><br />
+
+            <label for="customer">Customer Type<span class="required">*</span></label><br />
+            <input tabindex="7" value="New customer" type="radio" name="customerType" id="customer" placeholder="Select one option." required />New Customer<br/>
+            <input tabindex="8" value="Returning customer" type="radio" name="customerType" id="customer" placeholder="Select one option." required />Returning Customer
+
+<br /><br />
+
+            <label for="message">Message<span class="required">*</span></label>
+            <textarea tabindex="9" name="customerMessage" id="message" type="text" placeholder="Provide a message" required></textarea>
+
+<br /><br />
+
+
+            <input tabindex="10" type="submit" value="Send" />
+            <input tabindex="11" type="reset" value="Clear" />
+        
+        </form>
+
+
+        <!-- JQuery CDN -->
+        <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+
+        <script>
+           
+            // Name field hint
+                document.contactUsForm.fullName.onfocus=function() {
+                document.getElementById('nameHint').innerHTML = "Please enter your first and last name.";
+            }
+
+             document.contactUsForm.fullName.onblur=function() {
+                document.getElementById('nameHint').innerHTML = "";
+            }
+
+             // Email field hint
+            document.contactUsForm.emailAddress.onfocus=function() {
+                document.getElementById('emailHint').innerHTML = "Please enter you email address.";
+            }
+
+             document.contactUsForm.emailAddress.onblur=function() {
+                document.getElementById('emailHint').innerHTML = "";
+            }
+
+            // Phone field hint
+           document.contactUsForm.phoneNumber.onfocus=function() {
+                document.getElementById('phoneHint').innerHTML = "Please enter you phone number.";
+            }
+
+             document.contactUsForm.phoneNumber.onblur=function() {
+                document.getElementById('phoneHint').innerHTML = "";
+            }
+
+            // Reg expression for phone number with parentheses and dash.
+            $("#phone").on("change keyup paste", function () {
+                var output;
+                var input = $("#phone").val();
+                input = input.replace(/[^0-9]/g, '');
+                var area = input.substr(0, 3);
+                var pre = input.substr(3, 3);
+                var tel = input.substr(6, 4);
+                if (area.length < 3) {
+                    output = "(" + area;
+                } else if (area.length == 3 && pre.length < 3) {
+                    output = "(" + area + ")" + " " + pre;
+                } else if (area.length == 3 && pre.length == 3) {
+                    output = "(" + area + ")" + " " + pre + "-" + tel;
+                }
+                $("#phone").val(output);
+            });
+
+            // Prevent numbers in full name field.
+            function preventNumberInput(e) {
+                var keyCode = (e.keyCode ? e.keyCode : e.which);
+                if (keyCode > 47 && keyCode < 58) {
+                    e.preventDefault();
+                }
+            }
+            
+            $(document).ready(function() {
+                $('#name').keypress(function(e) {
+                    preventNumberInput(e);
+                });
+            });
+
+            // Allow only numbers in year field.
+            function isNumberKey(evt){
+                var charCode = (evt.which) ? evt.which : event.keyCode
+                if (charCode > 31 && (charCode < 48 || charCode > 57))
+                    return false;
+                return true;
+            }
+
+
+        </script>
+    </body>
+</html>
